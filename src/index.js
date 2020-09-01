@@ -2,12 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import Routes from "./Routes";
-import './Sass/index.scss';
+import "./Sass/index.scss";
+
+//importacion de librerias externas
+import { Provider } from "react-redux";
+
+//se importa la store de redux, que se utilizara
+import Store from "./Redux/Store/index";
 
 ReactDOM.render(
-	<React.StrictMode>
+	<Provider store={Store}>
 		<Routes />
-	</React.StrictMode>,
+	</Provider>,
 	document.getElementById("root")
 );
 

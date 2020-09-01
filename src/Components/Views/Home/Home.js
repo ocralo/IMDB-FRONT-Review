@@ -2,6 +2,11 @@ import React from "react";
 
 //importacion de librerias externas
 import { Container, Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+
+//importacion de actions de redux
+
+//importacion de state de redux
 
 //importacion de componentes
 import CardSerie from "../../Components/CardSerie/CardSerie";
@@ -9,7 +14,7 @@ import CardSerie from "../../Components/CardSerie/CardSerie";
 /**
  * Vista principal de la aplicacion
  */
-export default function Home() {
+const Home = () => {
 	return (
 		<Container className="mt-4">
 			<Row>
@@ -39,4 +44,6 @@ export default function Home() {
 			</Row>
 		</Container>
 	);
-}
+};
+
+export default connect(null, null)(Home);
