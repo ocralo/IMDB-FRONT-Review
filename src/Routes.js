@@ -8,17 +8,18 @@ import {
 } from "react-router-dom";
 
 //importacion de componenetes
+import Home from "./Components/Views/Home/Home";
 
 /**
  * Componenete que maneja las rutas de la aplicacion
- */ 
+ */
 export default function Routes() {
 	return (
 		<Router>
 			<Switch>
 				<Route path="/">
-
-                </Route>
+					<Home />
+				</Route>
 			</Switch>
 		</Router>
 	);
