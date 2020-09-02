@@ -9,6 +9,7 @@ import {
 
 //importacion de componenetes
 import Home from "./Components/Views/Home/Home";
+import Search from "./Components/Views/Searchs/Searchs";
 import NavBar from "./Components/Components/NavBar/NavBar";
 
 /**
@@ -19,8 +20,11 @@ export default function Routes() {
 		<Router>
 			<NavBar />
 			<Switch>
-				<Route path="/">
+				<Route exact path="/">
 					<Home />
+				</Route>
+				<Route path="/search/:query">
+					<Search />
 				</Route>
 			</Switch>
 		</Router>
