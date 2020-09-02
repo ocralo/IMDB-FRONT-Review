@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 //importacion de librerias externas
 import { Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 //importacion de actions de redux
 
 //importacion de state de redux
 
+//importacion de reducer de redux
+import {
+	getSeriesError,
+	getSeriesPending,
+	getSeries,
+} from "../../../Redux/Reducer/index";
+
 //importacion de componentes
 import CardSerie from "../../Components/CardSerie/CardSerie";
+import fetchSeriesAction from "../../../Requests/Requests";
 
 /**
  * Vista principal de la aplicacion
  */
-const Home = () => {
+const Home = ({ fetchSeries }) => {
+	useEffect(() => {
+		fetchSeries("https://api.themoviedb.org/3/discover/tv");
+	}, []);
 	return (
 		<Container className="mt-4">
 			<Row>
@@ -46,4 +58,27 @@ const Home = () => {
 	);
 };
 
-export default connect(null, null)(Home);
+/**
+ * trae los estados de la storage
+ * @param {*} state 
+ */
+const mapStateToProps = (state) => ({
+	error: getSeriesError(state),
+	series: getSeries(state),
+	pending: getSeriesPending(state),
+});
+
+/**
+ * metodo para emitir acciones, para modificar el estado
+ * de la storage
+ * @param {*} dispatch 
+ */
+const mapDispatchToProps = (dispatch) =>
+	bindActionCreators(
+		{
+			fetchSeries: fetchSeriesAction,
+		},
+		dispatch
+	);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
