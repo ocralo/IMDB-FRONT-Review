@@ -1,17 +1,47 @@
-const initialState = { data: "" };
+import {
+	FETCH_SERIES_PENDING,
+	FETCH_SERIES_SUCCESS,
+	FETCH_SERIES_ERROR,
+} from "../Actions/index";
 
-// action es el valor devuelto por el action
-//action.payload será el valor que quiero añadir, borrar, etc
-export default (state = initialState, action) => {
-	if (action.type === "MODIFY") {
-		return {
-			...state, //Lo que devuelve un reducer es lo que se quedará en el state, por tanto, debe devolver todo lo que había antes (además de la información que cambia)
-			data: action.payload,
-		};
-	}
-
-	return state;
+const initialState = {
+	pending: false,
+	series: [],
+	error: null,
 };
 
-export const selectActiveWord = (state) =>
-	state.palabraReducer.palabra;
+/**
+ * Manejador de acciones 
+ * @param {JSON} state 
+ * @param {*} action 
+ */
+export default function productsReducer(
+	state = initialState,
+	action
+) {
+	switch (action.type) {
+		case FETCH_SERIES_PENDING:
+			return {
+				...state,
+				pending: true,
+			};
+		case FETCH_SERIES_SUCCESS:
+			return {
+				...state,
+				pending: false,
+				series: action.payload,
+			};
+		case FETCH_SERIES_ERROR:
+			return {
+				...state,
+				pending: false,
+				error: action.error,
+			};
+		default:
+			return state;
+	}
+}
+
+export const getSeries = (state) => state.series;
+export const getSeriesPending = (state) => state.pending;
+export const getSeriesError = (state) => state.error;
