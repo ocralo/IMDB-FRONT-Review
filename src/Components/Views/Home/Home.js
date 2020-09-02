@@ -23,7 +23,7 @@ import fetchSeriesAction from "../../../Requests/Requests";
 /**
  * Vista principal de la aplicacion
  */
-const Home = ({ fetchSeries }) => {
+const Home = ({ fetchSeries, series }) => {
 	useEffect(() => {
 		fetchSeries("https://api.themoviedb.org/3/discover/tv");
 	}, []);
@@ -35,24 +35,14 @@ const Home = ({ fetchSeries }) => {
 				</Col>
 			</Row>
 			<Row>
-				<Col xs={12} md={4} sm={6}>
-					<CardSerie />
-				</Col>
-				<Col xs={12} md={4} sm={6}>
-					<CardSerie />
-				</Col>
-				<Col xs={12} md={4} sm={6}>
-					<CardSerie />
-				</Col>
-				<Col xs={12} md={4} sm={6}>
-					<CardSerie />
-				</Col>
-				<Col xs={12} md={4} sm={6}>
-					<CardSerie />
-				</Col>
-				<Col xs={12} md={4} sm={6}>
-					<CardSerie />
-				</Col>
+				{series.map((value) => (
+					<Col xs={12} md={4} sm={6} key={value.id}>
+						<CardSerie
+							title={value.name}
+							imageURL={value.backdrop_path}
+						/>
+					</Col>
+				))}
 			</Row>
 		</Container>
 	);
@@ -60,7 +50,7 @@ const Home = ({ fetchSeries }) => {
 
 /**
  * trae los estados de la storage
- * @param {*} state 
+ * @param {*} state
  */
 const mapStateToProps = (state) => ({
 	error: getSeriesError(state),
@@ -71,7 +61,7 @@ const mapStateToProps = (state) => ({
 /**
  * metodo para emitir acciones, para modificar el estado
  * de la storage
- * @param {*} dispatch 
+ * @param {*} dispatch
  */
 const mapDispatchToProps = (dispatch) =>
 	bindActionCreators(
