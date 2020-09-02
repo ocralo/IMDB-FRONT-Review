@@ -1,0 +1,7 @@
+.btn-search {
+	&:hover {
+		img {
+			filter: saturate(0);
+		}
+	}
+}
