@@ -19,7 +19,7 @@ import {
 
 //importacion de componentes
 import CardSerie from "../../Components/CardSerie/CardSerie";
-import fetchSeriesAction from "../../../Requests/Requests";
+import {fetchSeries} from "../../../Requests/Requests";
 
 /**
  * Vista principal de la aplicacion
@@ -48,7 +48,7 @@ const Home = ({ fetchSeries, series }) => {
 		<Container className="mt-4">
 			<Row>
 				<Col>
-					<h1>Series</h1>
+					<h1>Series Populares</h1>
 				</Col>
 			</Row>
 			<Row>
@@ -90,7 +90,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>
 	bindActionCreators(
 		{
-			fetchSeries: fetchSeriesAction,
+			fetchSeries: fetchSeries,
 		},
 		dispatch
 	);
