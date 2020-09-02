@@ -9,7 +9,7 @@ import {
 } from "../Redux/Actions/index";
 
 /**
- * Funcion que realiza peticion get a la api de TMDB con la key generada 
+ * Funcion que realiza peticion get a la api de TMDB con la key generada
  * que retorna las series mas populares
  * @param {string} url
  */
@@ -22,9 +22,8 @@ function fetchSeries(url) {
 				// handle success
 				const dataResult = response.data.results;
 				console.log(dataResult);
-				dispatch(
-					fetchSeriesSuccess(Object.values(dataResult))
-				);
+				dispatch(fetchSeriesSuccess(dataResult));
+				return dataResult;
 			})
 			.catch((error) => {
 				// handle error

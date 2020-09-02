@@ -11,9 +11,9 @@ const initialState = {
 };
 
 /**
- * Manejador de acciones 
- * @param {JSON} state 
- * @param {*} action 
+ * Manejador de acciones
+ * @param {JSON} state
+ * @param {*} action
  */
 export default function productsReducer(
 	state = initialState,
@@ -29,7 +29,7 @@ export default function productsReducer(
 			return {
 				...state,
 				pending: false,
-				series: action.payload,
+				series: action.series,
 			};
 		case FETCH_SERIES_ERROR:
 			return {
