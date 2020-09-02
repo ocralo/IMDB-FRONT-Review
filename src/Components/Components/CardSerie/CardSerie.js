@@ -7,15 +7,17 @@ import { Card } from "react-bootstrap";
  *
  * @param {*} param0
  */
-export default function CardSerie({
-	title = "titulo",
-	imageURL = "/7XEtHQoy1hwa8XWaOkSv3rlteea.jpg",
-}) {
+export default function CardSerie({ title = "titulo", imageURL }) {
 	return (
 		<Card className="shadow mt-4">
 			<Card.Img
 				variant="top"
-				src={`https://image.tmdb.org/t/p/w500${imageURL}`}
+				src={
+					imageURL
+						? `https://image.tmdb.org/t/p/w500${imageURL}`
+						: `${process.env.PUBLIC_URL}/img/error.svg`
+				}
+				height="167.453"
 			/>
 			<Card.Body className="p-2">
 				<Card.Title className="m-0">{title}</Card.Title>
