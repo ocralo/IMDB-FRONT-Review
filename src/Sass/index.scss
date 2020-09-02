@@ -1,5 +1,11 @@
 //import bootstrap
 @import "~bootstrap/scss/bootstrap";
 
-// variable.scss
+// import variables
 @import "./variable.scss";
+
+// import estilos de botones 
+@import "./buttons.scss";
+
+// import estilos de cards 
+@import "./cards.scss";
