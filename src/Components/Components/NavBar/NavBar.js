@@ -15,7 +15,7 @@ import {
  */
 export default function NavBar() {
 	return (
-		<Navbar bg="dark" expand="lg" variant="dark">
+		<Navbar bg="dark" expand="lg" variant="dark" sticky={'top'}>
 			<Navbar.Brand href="#home">NVC Movie</Navbar.Brand>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
@@ -26,7 +26,7 @@ export default function NavBar() {
 				<Form inline>
 					<FormControl
 						type="text"
-						placeholder="Buscar"
+						placeholder="Buscar..."
 						className="mr-sm-2"
 					/>
 					<Button variant="outline-success">Buscar</Button>
