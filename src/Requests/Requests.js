@@ -9,6 +9,9 @@ import {
 	fetchSeriesPagePending,
 	fetchSeriesPageSuccess,
 	fetchSeriesPageError,
+	fetchSearchSeriesPending,
+	fetchSearchSeriesSuccess,
+	fetchSearchSeriesError,
 } from "../Redux/Actions/index";
 
 /**
@@ -17,9 +20,9 @@ import {
  * @param {string} url
  * @param {int} page
  */
-function fetchSeries(url, page = 1) {
+export const fetchSeries = (url, page = 1) => {
 	return (dispatch) => {
-		if (page != 1) {
+		if (page !== 1) {
 			dispatch(fetchSeriesPagePending());
 			axios
 				.get(
@@ -56,6 +59,35 @@ function fetchSeries(url, page = 1) {
 				});
 		}
 	};
-}
+};
 
-export default fetchSeries;
+/**
+ * Funcion que realiza peticion get a la api de TMDB con la key generada
+ * que retorna la busqueda de una palabra, con relacion a
+ * un nombre de serie
+ * @param {string} url
+ * @param {int} page
+ * @param {string} query
+ */
+export const fetchSearchSeries = (url, page = 1, query = "a") => {
+	return (dispatch) => {
+		dispatch(fetchSearchSeriesPending());
+		console.log(url);
+		axios
+			.get(
+				`${url}?api_key=b2907782d07859a652052d3bae537475&page=${page}&query=${query}`
+			)
+			.then((response) => {
+				// handle success
+				const dataResult = response.data.results;
+				console.log(dataResult);
+				dispatch(fetchSearchSeriesSuccess(dataResult));
+				return dataResult;
+			})
+			.catch((error) => {
+				// handle error
+				console.log(error);
+				dispatch(fetchSearchSeriesError(error));
+			});
+	};
+};
